@@ -3,20 +3,20 @@ type TodoItem {
     name: String!
     description: String
     date: String
-    idCustomer: Customer
-    idCar: Cars
+    customer: Customer
+    car: Cars
 }
 
 type Customer{
     id: ID!
     firstName: String!
     lastName: String!
-    idCar: [Cars]
+    Car: [Cars]
 }
 
 type Cars{
     id: ID!
-    idCustomer: Customer!
+    Customer: Customer!
     brand: String
     type: String
     year: Int

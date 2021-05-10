@@ -24,8 +24,8 @@ const Query: Required<QueryResolvers<ResolverContext>> = {
         date: (data.date.toDate() as Date).toJSON(),
         name: data.name,
         description: data.description,
-        idCar: (await data.idCar.get()).data(),
-        idCustomer: (await data.idCustomer.get()).data()
+        car: (await data.idCar.get()).data(),
+        customer: (await data.idCustomer.get()).data()
       }
       console.log(graphQLdoc);
       return graphQLdoc;

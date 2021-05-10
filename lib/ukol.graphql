@@ -3,6 +3,14 @@ query TodoItem {
         name
         description
         date
-        
+        car{
+            brand
+            type
+            year
+        }
+        customer{
+            firstName
+            lastName
+        }
     }
 }

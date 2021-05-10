@@ -7,7 +7,7 @@ import { todoItem } from '../components/todoItem'
 
 const Ukolnicek = () => {
   const {data, loading, error} = useTodoItemQuery({});
-  console.log(data?.ukol.name);
+  console.log(data?.ukol);
     return (
     <div className={styles.container}>
       <Head>
@@ -26,7 +26,8 @@ const Ukolnicek = () => {
                 <h3>Název: {data.ukol.name}</h3>
                 <p>Popis: {data.ukol.description}</p>
                 <p>Datum: {data.ukol.date}</p>
-                <p></p>
+                <p>Zákaznik: {data.ukol.customer?.firstName} {data.ukol.customer?.lastName}</p>
+                <p>Auto: {data.ukol.car?.brand} {data.ukol.car?.type} rok {data.ukol.car?.year}</p>
               </div>
             </>
           )}
