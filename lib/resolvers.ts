@@ -1,25 +1,38 @@
-import { QueryResolvers, MutationResolvers } from './type-defs.graphqls'
+import { QueryResolvers, TodoItem } from './type-defs.graphqls'
 import { ResolverContext } from './apollo'
-import console from 'console'
+import {db} from './firebase/db'
 
-const userProfile = {
+
+const userProfile : TodoItem = {
   id: String(1),
-  name: 'John Smith',
-  status: 'cached',
+  name: "ukol1",
+  description: "blaba"
 }
+
 
 const Query: Required<QueryResolvers<ResolverContext>> = {
-  viewer(_parent, _args, _context, _info) {
-    return userProfile
-  },
+  async ukol(_parent, _args, _context, _info){
+    const docRef = db.collection('TodoItem').doc('1')
+    const doc = await docRef.get()
+
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    //return doc.exists ? (doc.data()! as TodoItem) : userProfile
+    if(doc.exists){
+      const data = doc.data();
+      const graphQLdoc : TodoItem = {
+        id: data.id,
+        date: (data.date.toDate() as Date).toJSON(),
+        name: data.name,
+        description: data.description,
+        idCar: (await data.idCar.get()).data(),
+        idCustomer: (await data.idCustomer.get()).data()
+      }
+      console.log(graphQLdoc);
+      return graphQLdoc;
+    } else {
+      return userProfile
+    }
+  }
 }
 
-const Mutation: Required<MutationResolvers<ResolverContext>> = {
-  updateName(_parent, _args, _context, _info) {
-    console.log(`setting a new name to ${_args.name}`)
-    userProfile.name = _args.name
-    return userProfile
-  },
-}
-
-export default { Query, Mutation }
+export default { Query }

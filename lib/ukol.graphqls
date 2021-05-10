@@ -1,0 +1,44 @@
+type TodoItem {
+    id: ID!
+    name: String!
+    description: String
+    date: String
+    idCustomer: Customer
+    idCar: Cars
+}
+
+type Customer{
+    id: ID!
+    firstName: String!
+    lastName: String!
+    idCar: [Cars]
+}
+
+type Cars{
+    id: ID!
+    idCustomer: Customer!
+    brand: String
+    type: String
+    year: Int
+}
+
+type Date{
+    day: Int!
+    month: Mesic!
+    year: Int!
+}
+
+enum Mesic{
+    Leden
+    Unor
+    Brezen
+    Duben
+    Kveten
+    Cerven
+    Cervenec
+    Srpen
+    Zari
+    Rijen
+    Listopad
+    Prosinec
+}

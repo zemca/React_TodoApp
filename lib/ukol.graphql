@@ -1,0 +1,8 @@
+query TodoItem {
+    ukol{
+        name
+        description
+        date
+        
+    }
+}

@@ -1,7 +1,3 @@
 type Query {
-  viewer: User!
-}
-
-type Mutation {
-  updateName(name: String!): User!
+  ukol: TodoItem!
 }
