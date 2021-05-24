@@ -3,11 +3,9 @@ import { useTodoItemQuery } from '../lib/ukol.graphql'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import { Menu } from '../components/navBar'
-import { todoItem } from '../components/todoItem'
+import { TodoItem } from '../components/todoItem'
 
 const Ukolnicek = () => {
-  const {data, loading, error} = useTodoItemQuery({});
-  console.log(data?.ukol);
     return (
     <div className={styles.container}>
       <Head>
@@ -18,19 +16,8 @@ const Ukolnicek = () => {
       <main className={styles.main}>
         <h1>Todo app</h1>
         <div>
-          {loading && <>loading...</>}
-          {error && <>Eror!</>}
-          {data && (
-            <>
-              <div className={styles.cart}>
-                <h3>Název: {data.ukol.name}</h3>
-                <p>Popis: {data.ukol.description}</p>
-                <p>Datum: {data.ukol.date}</p>
-                <p>Zákaznik: {data.ukol.customer?.firstName} {data.ukol.customer?.lastName}</p>
-                <p>Auto: {data.ukol.car?.brand} {data.ukol.car?.type} rok {data.ukol.car?.year}</p>
-              </div>
-            </>
-          )}
+          <TodoItem>
+          </TodoItem>
         </div>
       </main>
         
